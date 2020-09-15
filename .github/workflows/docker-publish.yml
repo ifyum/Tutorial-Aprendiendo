@@ -29,11 +29,11 @@ jobs:
       - name: Run tests
            # docker build . --file Dockerfile
         run: |
-          if [ -f docker-compose.post.yml ]; then
-            docker-compose --file docker-compose.post.yml build
-            docker-compose --file docker-compose.post.yml run sut
+          if [ -f docker-compose.test.yml ]; then
+            docker-compose --file docker-compose.test.yml build
+            docker-compose --file docker-compose.test.yml run sut
           else
-            docker build . --file docker/post.yml
+            docker build . --file Dockerfile
         
           fi
 
