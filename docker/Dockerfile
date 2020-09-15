@@ -29,5 +29,3 @@ RUN \
 
 USER jhipster
 
-RUN \
-  docker-compose -f docker/post.yml up -d
