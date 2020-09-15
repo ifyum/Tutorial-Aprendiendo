@@ -27,12 +27,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Run tests
+           # docker build . --file Dockerfile
         run: |
           if [ -f docker-compose.post.yml ]; then
             docker-compose --file docker-compose.post.yml build
             docker-compose --file docker-compose.post.yml run sut
           else
-            docker build . --file src/main/docker/Dockerfile
+            docker build . --file Dockerfile
+        
           fi
 
   # Push image to GitHub Packages.
