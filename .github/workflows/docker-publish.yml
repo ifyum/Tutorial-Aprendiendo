@@ -33,7 +33,7 @@ jobs:
             docker-compose --file docker-compose.post.yml build
             docker-compose --file docker-compose.post.yml run sut
           else
-            docker build . --file Dockerfile
+            docker build . --file docker/post.yml
         
           fi
 
