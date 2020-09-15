@@ -6,7 +6,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { LoginModalService } from 'app/core/login/login-modal.service';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/user/account.model';
-import {YoutubeService} from "app/home/youtube.service";
+import {YoutubeService} from "app/entities/mis-paginas/youtube.service";
 import {IPlayList} from "app/shared/model/youtube.model";
 
 @Component({
@@ -18,13 +18,12 @@ export class CanalComponent implements OnInit, OnDestroy {
   account: Account;
   authSubscription: Subscription;
   modalRef: NgbModalRef;
-  videos: any[];
+
   constructor(
     private accountService: AccountService,
     private loginModalService: LoginModalService,
     private eventManager: JhiEventManager,
-    private youtubeService: YoutubeService,
-    private spinner: NgxSpinnerService,
+  private youtubeService: YoutubeService,
   ) {}
 
   ngOnInit() {
@@ -32,35 +31,19 @@ export class CanalComponent implements OnInit, OnDestroy {
       this.account = account;
     });
     this.registerAuthenticationSuccess();
-
-      this.spinner.show()
-      setTimeout(()=>
-      {
-        this.spinner.hide()
-      },3000)
-      this.videos = [];
-      this.youtubeService
-        .getVideosForChanel('UC_LtA_EtCr7Jp5ofOsYt18g', 15)
-        .pipe(takeUntil(this.unsubscribe$))
-        .subscribe(lista => {
-          for (let element of lista["items"]) {
-            this.videos.push(element)
-          }
-        });
-
-
   }
 
-  youtube() {
-
-
-    this.youtubeService.getVideosForChanel("ifyum",50).subscribe(res => {
-      this.eventManager.broadcast({
-
-      });
-
-    });
-  }
+  // youtube() {
+  //
+  //
+  //   this.youtubeService.playList().subscribe(res => {
+  //     this.eventManager.broadcast({
+  //       name: 'providenciaRechaza',
+  //       content: 'Providencia solicitud rechaza??'
+  //     });
+  //
+  //   });
+  // }
 
   registerAuthenticationSuccess() {
     this.authSubscription = this.eventManager.subscribe('authenticationSuccess', message => {
