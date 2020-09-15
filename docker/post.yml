@@ -1,0 +1,15 @@
+version: "3.1"
+services:
+  db:
+    image: postgres:9.6.19
+    container_name: "ifyum_postgres"
+    environment:
+      - POSTGRES_USER:root
+      - POSTGRES_ALLOW_EMPTY_PASSWORD:yes
+      - POSTGRES_DATABASE:ifyum
+    ports:
+      - "54320:5432"
+    volumes:
+      - ifyumdb:/var/lib/postgresql/data
+volumes:
+  ifyumdb:
